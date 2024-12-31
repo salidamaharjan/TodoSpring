@@ -7,18 +7,17 @@ import java.util.List;
 
 @Repository
 public class TodoStore {
-    private final List<String> todoList;
-
-    public TodoStore() {
-        todoList = new ArrayList<>();
-        todoList.add("Cook");
-        todoList.add("Clean");
+    private final List<String> taskList;
+    public TodoStore(){
+        taskList = new ArrayList<>();
+        taskList.add("Cook");
+        taskList.add("Study");
     }
 
-    public List<String> getTodoList() {
-        return todoList;
+    public List<String> getTaskList() {
+        return taskList;
     }
-//    public void setTodoList(Task task){
-//        this.todoList.add(task);
-//    }
+    public void setTaskList(Task task){
+        this.taskList.add(task.getTask());
+    }
 }

@@ -13,14 +13,12 @@ public class TaskAPI {
     private final TodoStore todoStore;
 
     @Autowired
-    public TaskAPI( TodoStore todoStore){
+    public TaskAPI(TodoStore todoStore){
         this.todoStore = todoStore;
     }
-    public TodoStore getTodoStore(){
-        return todoStore;
-    }
+
     @GetMapping
-    public List<String> getTasks(){
-        return getTodoStore().getTodoList();
+    public List<String> getTodoStore(){
+        return todoStore.getTaskList();
     }
 }
