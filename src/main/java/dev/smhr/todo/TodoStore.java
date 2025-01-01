@@ -17,7 +17,7 @@ public class TodoStore {
     public List<String> getTaskList() {
         return taskList;
     }
-    public void setTaskList(Task task){
-        this.taskList.add(task.getTask());
+    public void setTaskList(String task){
+        this.taskList.add(task);
     }
 }
