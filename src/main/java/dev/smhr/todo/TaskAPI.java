@@ -1,7 +1,6 @@
 package dev.smhr.todo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +31,7 @@ public class TaskAPI {
     }
 
     @PutMapping("/{index}")
-    public ResponseEntity<String> editTask(@PathVariable Integer index, @RequestBody String newTask, HttpEntity<Object> httpEntity){
+    public ResponseEntity<String> editTask(@PathVariable Integer index, @RequestBody String newTask){
         if (index < 0 || index >= todoStore.getTaskList().size()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with index " + index + " not found");
         }
