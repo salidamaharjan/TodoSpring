@@ -28,4 +28,11 @@ public class TaskAPI {
         todoStore.setTaskList(newTask);
         return ResponseEntity.ok(task + " added");
     }
+
+    @PutMapping("/{index}")
+    public ResponseEntity<String> editTask(@PathVariable Integer index, @RequestBody String newTask){
+        Task taskToBeChanged = todoStore.getTaskList().get(index);
+        taskToBeChanged.setTaskName(newTask);
+        return ResponseEntity.ok("Task changed");
+    }
 }

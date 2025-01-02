@@ -11,9 +11,6 @@ public class TodoStore {
 
     public TodoStore(){
         taskList = new ArrayList<>();
-
-//        taskList.add("Cook");
-//        taskList.add("Study");
     }
 
     public List<Task> getTaskList() {
