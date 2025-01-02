@@ -40,6 +40,15 @@ public class TaskAPI {
         return ResponseEntity.ok("Task changed");
     }
 
+    @PutMapping("/complete/{index}")
+    public ResponseEntity<String> editCompleted(@PathVariable Integer index, @RequestBody Boolean complete){
+        if (index < 0 || index >= todoStore.getTaskList().size()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with index " + index + " not found");
+        }
+        Task taskToBeChanged = todoStore.getTaskList().get(index);
+        taskToBeChanged.setCompleted(complete);
+        return ResponseEntity.ok("Completion updated");
+    }
     @DeleteMapping("/{index}")
     public ResponseEntity<String> deleteTask(@PathVariable int index){
         todoStore.getTaskList().remove(index);

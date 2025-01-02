@@ -5,7 +5,7 @@ public class Task {
     private Boolean completed;
 
     public Task() {
-        taskName = "";
+        taskName = null;
         completed = false;
     }
 
