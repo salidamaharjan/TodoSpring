@@ -1,15 +1,18 @@
 package dev.smhr.todo;
 
 public class Task {
-    private String task;
-    public Task(){
-        task = "";
+    private String taskName;
+
+    public Task() {
+        taskName = "";
     }
-    public String getTask(){
-        return this.task;
+
+    public String getTaskName() {
+        return this.taskName;
     }
-    public void setTask(String task){
-        this.task = task;
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
     }
 }
 
