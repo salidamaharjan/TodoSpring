@@ -35,4 +35,11 @@ public class TaskAPI {
         taskToBeChanged.setTaskName(newTask);
         return ResponseEntity.ok("Task changed");
     }
+
+    @DeleteMapping("/{index}")
+    public ResponseEntity<String> deleteTask(@PathVariable int index){
+        todoStore.getTaskList().remove(index);
+
+        return ResponseEntity.ok("Task Deleted");
+    }
 }
