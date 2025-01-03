@@ -20,7 +20,7 @@ public class TaskAPI {
 
     @GetMapping
     public List<Task> getTodoStore(){
-        return todoStore.getTasks();
+        return todoStore.getTask();
     }
 
     @PostMapping
@@ -31,10 +31,10 @@ public class TaskAPI {
 
     @PutMapping("/{index}")
     public ResponseEntity<String> editTask(@PathVariable Integer index, @Valid @RequestBody Task updatedTask){
-        if (index < 0 || index >= todoStore.getTasks().size()) {
+        if (index < 0 || index >= todoStore.getTask().size()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with index " + index + " not found");
         }
-        Task taskToBeChanged = todoStore.getTasks().get(index);
+        Task taskToBeChanged = todoStore.getTask().get(index);
         taskToBeChanged.setTaskName(updatedTask.getTaskName());
         taskToBeChanged.setCompleted(updatedTask.getCompleted());
         return ResponseEntity.ok("Task changed");
@@ -42,7 +42,7 @@ public class TaskAPI {
 
     @DeleteMapping("/{index}")
     public ResponseEntity<String> deleteTask(@PathVariable int index){
-        todoStore.getTasks().remove(index);
+        todoStore.getTask().remove(index);
 
         return ResponseEntity.ok("Task Deleted");
     }

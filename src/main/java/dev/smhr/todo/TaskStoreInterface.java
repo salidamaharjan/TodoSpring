@@ -3,7 +3,7 @@ package dev.smhr.todo;
 import java.util.List;
 
 public interface TaskStoreInterface {
-    void getTask();
+    List<Task> getTask();
 
     void setTask();
 
