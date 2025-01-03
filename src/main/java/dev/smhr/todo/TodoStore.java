@@ -13,11 +13,11 @@ public class TodoStore {
         taskList = new ArrayList<>();
     }
 
-    public List<Task> getTaskList() {
+    public List<Task> getTasks() {
         return taskList;
     }
 
-    public void setTaskList(Task task){
+    public void addTask(Task task){
         this.taskList.add(task);
     }
 }

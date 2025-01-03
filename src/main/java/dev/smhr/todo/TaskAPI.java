@@ -19,39 +19,29 @@ public class TaskAPI {
 
     @GetMapping
     public List<Task> getTodoStore(){
-        return todoStore.getTaskList();
+        return todoStore.getTasks();
     }
 
     @PostMapping
-    public ResponseEntity<String> setTask(@RequestBody String task){
-        Task newTask = new Task();
-        newTask.setTaskName(task);
-        todoStore.setTaskList(newTask);
-        return ResponseEntity.ok(task + " added");
+    public ResponseEntity<String> setTask(@RequestBody Task task){
+        todoStore.addTask(task);
+        return ResponseEntity.ok(task.getTaskName() + " added");
     }
 
     @PutMapping("/{index}")
-    public ResponseEntity<String> editTask(@PathVariable Integer index, @RequestBody String newTask){
-        if (index < 0 || index >= todoStore.getTaskList().size()) {
+    public ResponseEntity<String> editTask(@PathVariable Integer index, @RequestBody Task updatedTask){
+        if (index < 0 || index >= todoStore.getTasks().size()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with index " + index + " not found");
         }
-        Task taskToBeChanged = todoStore.getTaskList().get(index);
-        taskToBeChanged.setTaskName(newTask);
+        Task taskToBeChanged = todoStore.getTasks().get(index);
+        taskToBeChanged.setTaskName(updatedTask.getTaskName());
+        taskToBeChanged.setCompleted(updatedTask.getCompleted());
         return ResponseEntity.ok("Task changed");
     }
 
-    @PutMapping("/complete/{index}")
-    public ResponseEntity<String> editCompleted(@PathVariable Integer index, @RequestBody Boolean complete){
-        if (index < 0 || index >= todoStore.getTaskList().size()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with index " + index + " not found");
-        }
-        Task taskToBeChanged = todoStore.getTaskList().get(index);
-        taskToBeChanged.setCompleted(complete);
-        return ResponseEntity.ok("Completion updated");
-    }
     @DeleteMapping("/{index}")
     public ResponseEntity<String> deleteTask(@PathVariable int index){
-        todoStore.getTaskList().remove(index);
+        todoStore.getTasks().remove(index);
 
         return ResponseEntity.ok("Task Deleted");
     }
