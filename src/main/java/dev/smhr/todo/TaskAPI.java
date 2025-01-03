@@ -14,33 +14,33 @@ public class TaskAPI {
     private final InMemoryTaskStore todoStore;
 
     @Autowired
-    public TaskAPI(InMemoryTaskStore todoStore){
+    public TaskAPI(InMemoryTaskStore todoStore) {
         this.todoStore = todoStore;
     }
 
     @GetMapping
-    public List<Task> getTodoStore(){
+    public List<Task> getTodoStore() {
         return todoStore.getTask();
     }
 
     @PostMapping
-    public ResponseEntity<String> addTask(@Valid @RequestBody Task task){
+    public ResponseEntity<String> addTask(@Valid @RequestBody Task task) {
         todoStore.addTask(task);
         return ResponseEntity.ok(task.getTaskName() + " added");
     }
 
     @PutMapping("/{index}")
-    public ResponseEntity<String> editTask(@PathVariable Integer index, @Valid @RequestBody Task updatedTask){
+    public ResponseEntity<String> editTask(@PathVariable Integer index, @Valid @RequestBody Task updatedTask) {
         if (index < 0 || index >= todoStore.getTask().size()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with index " + index + " not found");
         }
-        todoStore.editTask(index,updatedTask);
+        todoStore.editTask(index, updatedTask);
         return ResponseEntity.ok("Task changed");
     }
 
     @DeleteMapping("/{index}")
-    public ResponseEntity<String> deleteTask(@PathVariable int index){
-        todoStore.getTask().remove(index);
+    public ResponseEntity<String> deleteTask(@PathVariable int index) {
+        todoStore.deleteTask(index);
 
         return ResponseEntity.ok("Task Deleted");
     }
