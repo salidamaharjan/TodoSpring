@@ -11,10 +11,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskAPI {
-    private final TaskStore todoStore;
+    private final InMemoryTaskStore todoStore;
 
     @Autowired
-    public TaskAPI(TaskStore todoStore){
+    public TaskAPI(InMemoryTaskStore todoStore){
         this.todoStore = todoStore;
     }
 

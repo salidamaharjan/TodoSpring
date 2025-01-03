@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class TaskStore {
+public class InMemoryTaskStore {
     private final List<Task> taskList;
 
-    public TaskStore(){
+    public InMemoryTaskStore(){
         taskList = new ArrayList<>();
     }
 
