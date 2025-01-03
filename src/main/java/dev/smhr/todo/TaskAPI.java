@@ -24,7 +24,7 @@ public class TaskAPI {
     }
 
     @PostMapping
-    public ResponseEntity<String> setTask(@Valid @RequestBody Task task){
+    public ResponseEntity<String> addTask(@Valid @RequestBody Task task){
         todoStore.addTask(task);
         return ResponseEntity.ok(task.getTaskName() + " added");
     }
@@ -34,9 +34,7 @@ public class TaskAPI {
         if (index < 0 || index >= todoStore.getTask().size()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with index " + index + " not found");
         }
-        Task taskToBeChanged = todoStore.getTask().get(index);
-        taskToBeChanged.setTaskName(updatedTask.getTaskName());
-        taskToBeChanged.setCompleted(updatedTask.getCompleted());
+        todoStore.editTask(index,updatedTask);
         return ResponseEntity.ok("Task changed");
     }
 

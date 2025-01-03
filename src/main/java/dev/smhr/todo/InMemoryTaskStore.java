@@ -25,12 +25,14 @@ public class InMemoryTaskStore implements TaskStoreInterface {
     }
 
     @Override
-    public void editTask() {
-
+    public void editTask(Integer index, Task updateTask) {
+        Task taskTobeChanged = taskList.get(index);
+        taskTobeChanged.setTaskName(updateTask.getTaskName());
+        taskTobeChanged.setCompleted(updateTask.getCompleted());
     }
 
     @Override
-    public void deleteTask() {
+    public void deleteTask(int index) {
 
     }
 }
