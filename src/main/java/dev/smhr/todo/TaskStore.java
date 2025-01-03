@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class TodoStore {
+public class TaskStore {
     private final List<Task> taskList;
 
-    public TodoStore(){
+    public TaskStore(){
         taskList = new ArrayList<>();
     }
 
