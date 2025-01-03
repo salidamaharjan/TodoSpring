@@ -1,6 +1,9 @@
 package dev.smhr.todo;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class Task {
+    @NotBlank
     private String taskName;
     private Boolean completed;
 

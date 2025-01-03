@@ -1,5 +1,6 @@
 package dev.smhr.todo;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +24,13 @@ public class TaskAPI {
     }
 
     @PostMapping
-    public ResponseEntity<String> setTask(@RequestBody Task task){
+    public ResponseEntity<String> setTask(@Valid @RequestBody Task task){
         todoStore.addTask(task);
         return ResponseEntity.ok(task.getTaskName() + " added");
     }
 
     @PutMapping("/{index}")
-    public ResponseEntity<String> editTask(@PathVariable Integer index, @RequestBody Task updatedTask){
+    public ResponseEntity<String> editTask(@PathVariable Integer index, @Valid @RequestBody Task updatedTask){
         if (index < 0 || index >= todoStore.getTasks().size()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with index " + index + " not found");
         }
