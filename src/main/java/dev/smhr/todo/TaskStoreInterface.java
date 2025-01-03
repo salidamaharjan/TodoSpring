@@ -5,7 +5,7 @@ import java.util.List;
 public interface TaskStoreInterface {
     List<Task> getTask();
 
-    void setTask();
+    void addTask(Task task);
 
     void editTask();
 
