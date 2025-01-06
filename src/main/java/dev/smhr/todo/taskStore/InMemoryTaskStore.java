@@ -1,5 +1,6 @@
-package dev.smhr.todo;
+package dev.smhr.todo.taskStore;
 
+import dev.smhr.todo.Task;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
