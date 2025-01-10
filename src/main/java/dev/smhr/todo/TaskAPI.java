@@ -3,6 +3,7 @@ package dev.smhr.todo;
 import dev.smhr.todo.taskStore.TaskStoreInterface;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ public class TaskAPI {
     private final TaskStoreInterface todoStore;
 
     @Autowired
-    public TaskAPI(TaskStoreInterface todoStore) {
+    public TaskAPI(@Qualifier("dbTaskStore") TaskStoreInterface todoStore) {
         this.todoStore = todoStore;
     }
 
