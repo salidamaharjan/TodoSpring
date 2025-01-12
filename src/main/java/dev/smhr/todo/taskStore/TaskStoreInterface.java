@@ -9,7 +9,7 @@ public interface TaskStoreInterface {
 
     void addTask(Task task);
 
-    void editTask(Integer index, Task updateTask);
+    void editTask(Integer id, Task updateTask);
 
     void deleteTask(int index);
 

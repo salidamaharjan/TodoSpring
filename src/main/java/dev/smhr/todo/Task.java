@@ -3,6 +3,7 @@ package dev.smhr.todo;
 import jakarta.validation.constraints.NotBlank;
 
 public class Task {
+    private int id;
     @NotBlank
     private String taskName;
     private Boolean completed;
@@ -10,6 +11,14 @@ public class Task {
     public Task() {
         taskName = null;
         completed = false;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTaskName() {

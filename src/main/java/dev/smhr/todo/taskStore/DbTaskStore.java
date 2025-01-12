@@ -1,14 +1,9 @@
 package dev.smhr.todo.taskStore;
 
-import dev.smhr.todo.AddTask;
-import dev.smhr.todo.DB_Connection;
-import dev.smhr.todo.GetAllTasks;
-import dev.smhr.todo.Task;
+import dev.smhr.todo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -42,7 +37,8 @@ public class DbTaskStore implements TaskStoreInterface{
 
     @Override
     public void editTask(Integer index, Task updateTask) {
-
+        EditTask editTask = new EditTask();
+        editTask.editTask(index, updateTask);
     }
 
     @Override

@@ -10,7 +10,7 @@ public class DB_Connection {
 
     public void createTable() throws SQLException {
         String createTableSQL = """ 
-                CREATE TABLE tasks(
+                CREATE TABLE IF NOT EXISTS tasks(
                     id SERIAL PRIMARY KEY, 
                     task_name TEXT, 
                     completed BOOLEAN )

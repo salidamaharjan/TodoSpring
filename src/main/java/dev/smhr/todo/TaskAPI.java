@@ -31,13 +31,13 @@ public class TaskAPI {
         return ResponseEntity.ok(task.getTaskName() + " added");
     }
 
-    @PutMapping("/{index}")
-    public ResponseEntity<String> editTask(@PathVariable Integer index, @Valid @RequestBody Task updatedTask) {
-        if (index < 0 || index >= todoStore.getTask().size()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with index " + index + " not found");
+    @PutMapping("/{id}")
+    public ResponseEntity<String> editTask(@PathVariable int id, @Valid @RequestBody Task updatedTask) {
+        if (id < 1 || id >= todoStore.getTask().size()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with index " + id + " not found");
         }
-        todoStore.editTask(index, updatedTask);
-        return ResponseEntity.ok("Task changed");
+        todoStore.editTask(id, updatedTask);
+        return ResponseEntity.ok("Task changed of id: "  + id);
     }
 
     @DeleteMapping("/{index}")
