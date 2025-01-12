@@ -1,10 +1,13 @@
 package dev.smhr.todo.taskStore;
 
 import dev.smhr.todo.DB_Connection;
+import dev.smhr.todo.GetAllTasks;
 import dev.smhr.todo.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -21,6 +24,12 @@ public class DbTaskStore implements TaskStoreInterface{
     }
     @Override
     public List<Task> getTask() {
+        GetAllTasks allTasks = new GetAllTasks();
+        try {
+           return allTasks.getAllTasks();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
         return List.of();
     }
 
