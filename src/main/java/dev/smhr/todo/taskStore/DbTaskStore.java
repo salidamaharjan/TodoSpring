@@ -42,7 +42,8 @@ public class DbTaskStore implements TaskStoreInterface{
     }
 
     @Override
-    public void deleteTask(int index) {
-
+    public void deleteTask(Integer id) {
+    DeleteTask deleteTask = new DeleteTask();
+    deleteTask.deleteTask(id);
     }
 }

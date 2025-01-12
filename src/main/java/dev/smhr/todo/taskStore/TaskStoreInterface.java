@@ -11,6 +11,6 @@ public interface TaskStoreInterface {
 
     void editTask(Integer id, Task updateTask);
 
-    void deleteTask(int index);
+    void deleteTask(Integer id);
 
 }

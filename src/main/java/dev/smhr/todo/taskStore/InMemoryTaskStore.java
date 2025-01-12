@@ -33,7 +33,7 @@ public class InMemoryTaskStore implements TaskStoreInterface {
     }
 
     @Override
-    public void deleteTask(int index) {
-        taskList.remove(index);
+    public void deleteTask(Integer id) {
+        taskList.remove(id);
     }
 }

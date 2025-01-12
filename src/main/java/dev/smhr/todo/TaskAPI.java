@@ -40,10 +40,9 @@ public class TaskAPI {
         return ResponseEntity.ok("Task changed of id: "  + id);
     }
 
-    @DeleteMapping("/{index}")
-    public ResponseEntity<String> deleteTask(@PathVariable int index) {
-        todoStore.deleteTask(index);
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteTask(@PathVariable int id) {
+        todoStore.deleteTask(id);
         return ResponseEntity.ok("Task Deleted");
     }
 }
