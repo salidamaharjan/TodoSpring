@@ -1,5 +1,6 @@
 package dev.smhr.todo.taskStore;
 
+import dev.smhr.todo.AddTask;
 import dev.smhr.todo.DB_Connection;
 import dev.smhr.todo.GetAllTasks;
 import dev.smhr.todo.Task;
@@ -35,7 +36,8 @@ public class DbTaskStore implements TaskStoreInterface{
 
     @Override
     public void addTask(Task task) {
-
+        AddTask aTask = new AddTask();
+        aTask.addTask(task.getTaskName());
     }
 
     @Override

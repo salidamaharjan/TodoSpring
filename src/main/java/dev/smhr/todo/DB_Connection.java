@@ -8,11 +8,6 @@ public class DB_Connection {
     private final String user = "myuser";
     private final String password = "secret";
 
-    private static final String INSERT_TASKS_SQL = "INSERT INTO tasks" +
-            "  (id ,task_name, completed) VALUES " +
-            " (?, ?, ?);";
-
-
     public void createTable() throws SQLException {
         String createTableSQL = """ 
                 CREATE TABLE tasks(
