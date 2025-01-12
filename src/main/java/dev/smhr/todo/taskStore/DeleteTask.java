@@ -1,31 +1,27 @@
-package dev.smhr.todo;
+package dev.smhr.todo.taskStore;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class AddTask {
+public class DeleteTask {
     private final String url = "jdbc:postgresql://localhost:5432/";
     private final String db = "my_todo";
     private final String user = "myuser";
     private final String password = "secret";
 
-    private static final String INSERT_TASKS_SQL = "INSERT INTO tasks" +
-            "  (task_name, completed) VALUES " +
-            " (?, ?);";
+    private final String DELETE_TASK_SQL = "DELETE FROM tasks WHERE id =?;";
 
-    public void addTask(String taskName) {
+    public void deleteTask(Integer id) {
         try {
             Connection connectDB = DriverManager.getConnection(url + db, user, password);
-            PreparedStatement preparedStatement = connectDB.prepareStatement(INSERT_TASKS_SQL);
-            preparedStatement.setString(1, taskName);
-            preparedStatement.setBoolean(2, false);
+            PreparedStatement preparedStatement = connectDB.prepareStatement(DELETE_TASK_SQL);
+            preparedStatement.setInt(1, id);
             int rows = preparedStatement.executeUpdate();
-            System.out.println(rows + " row(s) inserted.");
+            System.out.println("Deleted " + rows + " row(s).");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 }

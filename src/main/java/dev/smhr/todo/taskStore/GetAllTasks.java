@@ -1,4 +1,6 @@
-package dev.smhr.todo;
+package dev.smhr.todo.taskStore;
+
+import dev.smhr.todo.Task;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,10 +16,10 @@ public class GetAllTasks {
 
     public List<Task> getAllTasks() throws SQLException {
         List<Task> taskList = new ArrayList<>();
-        try(Connection connectDB = DriverManager.getConnection(url+db,user,password);
-            PreparedStatement preparedStatement = connectDB.prepareStatement(SELECT_ALL_TASKS);
-            ResultSet rs = preparedStatement.executeQuery()){
-            while(rs.next()) {
+        try (Connection connectDB = DriverManager.getConnection(url + db, user, password);
+             PreparedStatement preparedStatement = connectDB.prepareStatement(SELECT_ALL_TASKS);
+             ResultSet rs = preparedStatement.executeQuery()) {
+            while (rs.next()) {
                 Task task = new Task();
                 int id = rs.getInt("id");
                 String taskName = rs.getString("task_name");

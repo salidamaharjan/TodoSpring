@@ -1,4 +1,6 @@
-package dev.smhr.todo;
+package dev.smhr.todo.taskStore;
+
+import dev.smhr.todo.Task;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -11,7 +11,7 @@ import java.util.List;
 public class DbTaskStore implements TaskStoreInterface{
     @Autowired
    public DbTaskStore(){
-        DB_Connection connectDB = new DB_Connection();
+        DbConnection connectDB = new DbConnection();
         try{
             connectDB.createTable();
         }catch(SQLException e){

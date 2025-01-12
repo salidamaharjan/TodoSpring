@@ -1,8 +1,8 @@
-package dev.smhr.todo;
+package dev.smhr.todo.taskStore;
 
 import java.sql.*;
 
-public class DB_Connection {
+public class DbConnection {
     private final String url = "jdbc:postgresql://localhost:5432/";
     private final String db = "my_todo";
     private final String user = "myuser";
