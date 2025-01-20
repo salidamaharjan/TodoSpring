@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public class DbTaskStore implements TaskStoreInterface{
+
     @Autowired
    public DbTaskStore(){
         DbConnection connectDB = new DbConnection();
