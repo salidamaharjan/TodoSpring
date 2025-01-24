@@ -67,8 +67,6 @@ public class DbTaskStore implements TaskStoreInterface{
         }catch (SQLException e) {
             e.printStackTrace();
         }
-        AddTask aTask = new AddTask();
-        aTask.addTask(task.getTaskName());
     }
 
     @Override
