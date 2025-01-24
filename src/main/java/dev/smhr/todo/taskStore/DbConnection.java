@@ -11,7 +11,7 @@ public class DbConnection {
     private final String user = "myuser";
     private final String password = "secret";
 
-    public Connection getConnection()throws SQLException{
+    public Connection getConnection() throws SQLException {
         Connection connection = DriverManager.getConnection(url + db, user, password);
         return connection;
     }

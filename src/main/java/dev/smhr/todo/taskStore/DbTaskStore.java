@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class DbTaskStore implements TaskStoreInterface{
+public class DbTaskStore implements TaskStoreInterface {
     private DbConnection connectDB;
     private static final String SELECT_ALL_TASKS = "SELECT * FROM tasks order by id";
     private static final String INSERT_TASKS_SQL = """
@@ -21,20 +21,21 @@ public class DbTaskStore implements TaskStoreInterface{
     private final String DELETE_TASK_SQL = "DELETE FROM tasks WHERE id =?;";
 
     @Autowired
-   public DbTaskStore(){
-        connectDB = new DbConnection();
-        try{
+    public DbTaskStore(DbConnection connectDB) {
+        this.connectDB = connectDB;
+        try {
             connectDB.createTable();
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        };
+        }
     }
+
     @Override
     public List<Task> getTask() {
         List<Task> taskList = new ArrayList<>();
-        try(Connection connection = connectDB.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_TASKS);
-            ResultSet rs = preparedStatement.executeQuery()
+        try (Connection connection = connectDB.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_TASKS);
+             ResultSet rs = preparedStatement.executeQuery()
         ) {
             while (rs.next()) {
                 Task task = new Task();
@@ -48,7 +49,7 @@ public class DbTaskStore implements TaskStoreInterface{
                 System.out.println(id + " " + taskName + " " + completed);
             }
             return taskList;
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return List.of();
@@ -59,11 +60,11 @@ public class DbTaskStore implements TaskStoreInterface{
         try {
             Connection connection = connectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TASKS_SQL);
-            preparedStatement.setString(1,task.getTaskName() );
+            preparedStatement.setString(1, task.getTaskName());
             preparedStatement.setBoolean(2, false);
             int rows = preparedStatement.executeUpdate();
             System.out.println(rows + " row(s) inserted.");
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
