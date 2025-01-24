@@ -33,7 +33,7 @@ public class TaskAPI {
 
     @PutMapping("/{id}")
     public ResponseEntity<String> editTask(@PathVariable int id, @Valid @RequestBody Task updatedTask) {
-        if (id < 1 || id >= todoStore.getTask().size()) {
+        if (id < 1 || id > todoStore.getTask().size()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with index " + id + " not found");
         }
         todoStore.editTask(id, updatedTask);

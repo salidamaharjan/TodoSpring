@@ -4,10 +4,7 @@ import dev.smhr.todo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +17,7 @@ public class DbTaskStore implements TaskStoreInterface{
                         (task_name, completed) VALUES 
                         (?, ?)
             """;
+    private static final String UPDATE_TASK_SQL = "UPDATE tasks SET task_name = ? WHERE id = ?;";
 
     @Autowired
    public DbTaskStore(){
@@ -71,8 +69,17 @@ public class DbTaskStore implements TaskStoreInterface{
 
     @Override
     public void editTask(Integer index, Task updateTask) {
-        EditTask editTask = new EditTask();
-        editTask.editTask(index, updateTask);
+        try {
+            Connection connection = connectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TASK_SQL);
+            preparedStatement.setString(1, updateTask.getTaskName());
+            preparedStatement.setInt(2, index);
+            int rows = preparedStatement.executeUpdate();
+            System.out.println(rows + " row(s) updated.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
