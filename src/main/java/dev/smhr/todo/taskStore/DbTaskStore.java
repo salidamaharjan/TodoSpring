@@ -32,7 +32,17 @@ public class DbTaskStore implements TaskStoreInterface{
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_TASKS);
             ResultSet rs = preparedStatement.executeQuery()
         ) {
-           return allTasks.getAllTasks();
+            while (rs.next()) {
+                Task task = new Task();
+                int id = rs.getInt("id");
+                String taskName = rs.getString("task_name");
+                Boolean completed = rs.getBoolean("completed");
+                task.setId(id);
+                task.setTaskName(taskName);
+                task.setCompleted(completed);
+                taskList.add(task);
+                System.out.println(id + " " + taskName + " " + completed);
+            }
         }catch (SQLException e) {
             e.printStackTrace();
         }
