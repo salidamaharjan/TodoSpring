@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public class DbTaskStore implements TaskStoreInterface{
     private DbConnection connectDB;
+    private static final String SELECT_ALL_TASKS = "SELECT * FROM tasks order by id";
+
     @Autowired
    public DbTaskStore(){
         connectDB = new DbConnection();

@@ -12,7 +12,7 @@ public class GetAllTasks {
     private final String user = "myuser";
     private final String password = "secret";
 
-    private static final String SELECT_ALL_TASKS = "SELECT * FROM tasks order by id";
+//    private static final String SELECT_ALL_TASKS = "SELECT * FROM tasks order by id";
 
     public List<Task> getAllTasks() throws SQLException {
         List<Task> taskList = new ArrayList<>();
