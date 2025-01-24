@@ -20,7 +20,7 @@ public class DbTaskStore implements TaskStoreInterface{
                         (task_name, completed) VALUES 
                         (?, ?)
             """;
-    
+
     @Autowired
    public DbTaskStore(){
         connectDB = new DbConnection();
@@ -57,8 +57,11 @@ public class DbTaskStore implements TaskStoreInterface{
 
     @Override
     public void addTask(Task task) {
-
-
+        try {
+            Connection connection = connectDB.getConnection();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
         AddTask aTask = new AddTask();
         aTask.addTask(task.getTaskName());
     }
