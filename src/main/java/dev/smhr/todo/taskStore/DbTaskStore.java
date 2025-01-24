@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -23,7 +24,7 @@ public class DbTaskStore implements TaskStoreInterface{
     }
     @Override
     public List<Task> getTask() {
-        GetAllTasks allTasks = new GetAllTasks();
+        List<Task> taskList = new ArrayList<>();
         try {
            return allTasks.getAllTasks();
         }catch (SQLException e) {

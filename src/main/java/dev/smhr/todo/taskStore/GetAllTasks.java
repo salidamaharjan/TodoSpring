@@ -15,7 +15,7 @@ public class GetAllTasks {
 //    private static final String SELECT_ALL_TASKS = "SELECT * FROM tasks order by id";
 
     public List<Task> getAllTasks() throws SQLException {
-        List<Task> taskList = new ArrayList<>();
+//        List<Task> taskList = new ArrayList<>();
         try (Connection connectDB = DriverManager.getConnection(url + db, user, password);
              PreparedStatement preparedStatement = connectDB.prepareStatement(SELECT_ALL_TASKS);
              ResultSet rs = preparedStatement.executeQuery()) {
