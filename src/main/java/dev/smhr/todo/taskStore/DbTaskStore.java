@@ -15,7 +15,12 @@ import java.util.List;
 public class DbTaskStore implements TaskStoreInterface{
     private DbConnection connectDB;
     private static final String SELECT_ALL_TASKS = "SELECT * FROM tasks order by id";
-
+    private static final String INSERT_TASKS_SQL = """
+                        INSERT INTO tasks
+                        (task_name, completed) VALUES 
+                        (?, ?)
+            """;
+    
     @Autowired
    public DbTaskStore(){
         connectDB = new DbConnection();
@@ -43,6 +48,7 @@ public class DbTaskStore implements TaskStoreInterface{
                 taskList.add(task);
                 System.out.println(id + " " + taskName + " " + completed);
             }
+            return taskList;
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -51,6 +57,8 @@ public class DbTaskStore implements TaskStoreInterface{
 
     @Override
     public void addTask(Task task) {
+
+
         AddTask aTask = new AddTask();
         aTask.addTask(task.getTaskName());
     }
