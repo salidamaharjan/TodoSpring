@@ -18,6 +18,7 @@ public class DbTaskStore implements TaskStoreInterface{
                         (?, ?)
             """;
     private static final String UPDATE_TASK_SQL = "UPDATE tasks SET task_name = ? WHERE id = ?;";
+    private final String DELETE_TASK_SQL = "DELETE FROM tasks WHERE id =?;";
 
     @Autowired
    public DbTaskStore(){
@@ -84,7 +85,14 @@ public class DbTaskStore implements TaskStoreInterface{
 
     @Override
     public void deleteTask(Integer id) {
-    DeleteTask deleteTask = new DeleteTask();
-    deleteTask.deleteTask(id);
+        try {
+            Connection connection = connectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TASK_SQL);
+            preparedStatement.setInt(1, id);
+            int rows = preparedStatement.executeUpdate();
+            System.out.println("Deleted " + rows + " row(s).");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
