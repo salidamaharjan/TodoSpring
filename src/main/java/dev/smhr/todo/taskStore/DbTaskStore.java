@@ -9,10 +9,10 @@ import java.util.List;
 
 @Repository
 public class DbTaskStore implements TaskStoreInterface{
-
+    private DbConnection connectDB;
     @Autowired
    public DbTaskStore(){
-        DbConnection connectDB = new DbConnection();
+        connectDB = new DbConnection();
         try{
             connectDB.createTable();
         }catch(SQLException e){
