@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,9 @@ public class DbTaskStore implements TaskStoreInterface{
     @Override
     public List<Task> getTask() {
         List<Task> taskList = new ArrayList<>();
-        try(Connection connection = connectDB.getConnection()) {
+        try(Connection connection = connectDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_TASKS);
+        ) {
            return allTasks.getAllTasks();
         }catch (SQLException e) {
             e.printStackTrace();
