@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class DbTaskStore implements TaskStoreInterface{
         List<Task> taskList = new ArrayList<>();
         try(Connection connection = connectDB.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_TASKS);
+            ResultSet rs = preparedStatement.executeQuery()
         ) {
            return allTasks.getAllTasks();
         }catch (SQLException e) {
