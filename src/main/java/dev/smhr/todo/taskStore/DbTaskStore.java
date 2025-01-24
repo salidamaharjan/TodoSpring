@@ -62,6 +62,8 @@ public class DbTaskStore implements TaskStoreInterface{
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TASKS_SQL);
             preparedStatement.setString(1,task.getTaskName() );
             preparedStatement.setBoolean(2, false);
+            int rows = preparedStatement.executeUpdate();
+            System.out.println(rows + " row(s) inserted.");
         }catch (SQLException e) {
             e.printStackTrace();
         }
