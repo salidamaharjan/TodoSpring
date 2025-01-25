@@ -12,6 +12,7 @@ import java.util.List;
 public class DbTaskStore implements TaskStoreInterface {
     private DbConnection connectDB;
     private static final String SELECT_ALL_TASKS = "SELECT * FROM tasks order by id";
+    private static final String GET_TASK_BY_ID = "SELECT id, task_name, completed FROM tasks WHERE id = ?";
     private static final String INSERT_TASKS_SQL = """
                         INSERT INTO tasks
                         (task_name, completed) VALUES 
@@ -53,6 +54,25 @@ public class DbTaskStore implements TaskStoreInterface {
             e.printStackTrace();
         }
         return List.of();
+    }
+
+    @Override
+    public Task getTaskById(Integer index) {
+        Task taskById = new Task();
+        try (Connection connection = connectDB.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_TASK_BY_ID);
+            preparedStatement.setInt(1, index);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                taskById.setId(rs.getInt(1));
+                taskById.setTaskName(rs.getString(2));
+                taskById.setCompleted(rs.getBoolean(3));
+                return taskById;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return taskById;
     }
 
     @Override

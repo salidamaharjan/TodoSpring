@@ -25,6 +25,14 @@ public class TaskAPI {
         return todoStore.getTask();
     }
 
+    @GetMapping("/{id}")
+    public Task getTaskById(@PathVariable int id) {
+        if(id < 1 || id > todoStore.getTask().size()){
+            ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with index " + id + " not found");
+        }
+        return todoStore.getTaskById(id);
+    }
+
     @PostMapping
     public ResponseEntity<String> addTask(@Valid @RequestBody Task task) {
         todoStore.addTask(task);

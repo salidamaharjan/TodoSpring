@@ -21,6 +21,10 @@ public class InMemoryTaskStore implements TaskStoreInterface {
     }
 
     @Override
+    public Task getTaskById(Integer id){
+        return null;
+    }
+    @Override
     public void addTask(Task task) {
         this.taskList.add(task);
     }

@@ -7,6 +7,8 @@ import java.util.List;
 public interface TaskStoreInterface {
     List<Task> getTask();
 
+    Task getTaskById(Integer id);
+
     void addTask(Task task);
 
     void editTask(Integer id, Task updateTask);
